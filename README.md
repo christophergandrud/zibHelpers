@@ -1,5 +1,7 @@
-zibHelpers: Helper functions for handling results from Zero-Inflated Beta Regressions
+zibHelpers 
 ===
+
+> Helper functions for handling results from Bayesian Zero-Inflated Beta Regressions in R
 
 Christopher Gandrud
 
