@@ -1,0 +1,10 @@
+Package: zibHelpers
+Type: Package
+Title: Helper functions for handling results from Zero-inflated Beta Regressions
+Version: 0.1
+Date: 2014-08-07
+Author: Christopher Gandrud
+Maintainer: Christopher Gandrud <christopher.gandrud@gmail.com>
+Description: Contains a number of functions to help diagnose and examine results
+    from zero-inflated beta regressions estimated with the zoib package.
+License: MIT
