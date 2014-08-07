@@ -1,5 +1,4 @@
-zibHelpers: Helper functions for handling results from Zero-Inflated Beta
-Regressions
+zibHelpers: Helper functions for handling results from Zero-Inflated Beta Regressions
 ===
 
 Christopher Gandrud
