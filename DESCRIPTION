@@ -8,3 +8,9 @@ Maintainer: Christopher Gandrud <christopher.gandrud@gmail.com>
 Description: Contains a number of functions to help diagnose and examine results
     from zero-inflated beta regressions estimated with the zoib package.
 License: MIT
+Imports:
+    coda,
+    dplyr,
+    ggplot2,
+    magrittr,
+    reshape2

@@ -27,14 +27,16 @@ ReLabel <-function(obj, variable_names){
 }
 
 #' Extract simulations in suitable form for Gelman-Rubin test and summary
+#'
 #' @param obj model object from \code{zoib} where \code{one.inflation = FALSE}
 #' and \code{joint = FALSE}.
 #' @param max maximum number of simulations post burn-in
+#'
+#' @importFrom coda mcmc.list as.mcmc
 #' @keywords internal
 #' @noRd
 
 GetzibPost <- function(obj, max){
-    require(coda)
     post.sample <- obj$oripara
     sample.c1<- post.sample[[1]][1:max,]
     sample.c2<- post.sample[[2]][1:max,]

@@ -13,6 +13,7 @@
 #' @param variable_names character vector of variable names. Must be in the
 #' same order and the same length as variables enterd into the \code{zoib}
 #' formula.
+#' @param xlab character string x-axis label.
 #' @param title character string title for the plot
 #'
 #' @return a ggplot2 plot
@@ -25,7 +26,9 @@
 
 zibPlot <- function(obj, max, variable_names = NULL, xlab = '\nCoef. Estimates',
                     title = ''){
-    require(dplyr)
+    # CRAN stuff
+    Var2 <- value <- medians <- lower95 <- upper95 <- part <- lower90 <-
+        upper90 <- NULL
 
     # Extract simulations
     sims_subset <- obj$oripara
@@ -98,11 +101,11 @@ zibPlot <- function(obj, max, variable_names = NULL, xlab = '\nCoef. Estimates',
 #' @param iter integer. The number of iterations post-burn in.
 #'
 #' @return data frame
+#' @importFrom coda gelman.diag
 #' @export
 
 
 GelmanDiag <- function(obj, iter){
-    require(zoib)
     obj <- GetzibPost(obj, max = iter/2)
     gr <-  gelman.diag(obj)
     grDF <- gr[[1]]
@@ -110,7 +113,7 @@ GelmanDiag <- function(obj, iter){
 }
 
 
-#' Extract and summarize posterior distribution
+#' Extract and summarise posterior distribution
 #'
 #' @param obj model object from \code{zoib} where \code{one.inflation = FALSE}
 #' and \code{joint = FALSE}.
@@ -120,7 +123,6 @@ GelmanDiag <- function(obj, iter){
 #' @export
 
 SummaryZib <- function(obj, iter){
-    require(zoib)
     obj <- GetzibPost(obj, max = iter/2)
     Sum <-  summary(obj)
     return(Sum)
