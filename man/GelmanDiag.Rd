@@ -9,12 +9,37 @@ GelmanDiag(obj, iter)
 \item{obj}{model object from \code{zoib} where \code{one.inflation = FALSE}
 and \code{joint = FALSE}.}
 
-\item{iter}{integer. The number of iterations post-burn in.}
+\item{iter}{integer. The number of iterations.}
 }
 \value{
 data frame
 }
 \description{
 Extract Gelman-Rubin diagnostics as data frame
+}
+\examples{
+\dontrun{
+Load packages
+library(zoib)
+library(zibHelpers)
+
+# Run example of clustered zero-inflated beta regression from
+# Liu and Kong (under review, 12-14)
+
+# Load data
+data("AlcoholUse", package = "zoib")
+AlcoholUse$Grade <- as.factor(AlcoholUse$Grade)
+
+nIter = 50 # Number of iterations, including burn-in
+
+# Estimate
+Out <- zoib(Percentage ~ Grade + Days + Gender|1|Grade + Days + Gender|1,
+            data = AlcoholUse, random = 1, EUID = AlcoholUse$County,
+            zero.inflation = TRUE, one.inflation = FALSE, joint = FALSE,
+            n.iter = nIter)
+
+# Gelman-Rubin diagnostics
+GelmanDiag(Out, nIter)
+}
 }
 

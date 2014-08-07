@@ -3,14 +3,14 @@
 \alias{zibPlot}
 \title{Function to plot parameter posteriors from Zero-inflated Beta Regressions}
 \usage{
-zibPlot(obj, max, variable_names = NULL, xlab = "\\nCoef. Estimates",
+zibPlot(obj, iter, variable_names = NULL, xlab = "\\nCoef. Estimates",
   title = "")
 }
 \arguments{
 \item{obj}{model object from \code{zoib} where \code{one.inflation = FALSE}
 and \code{joint = FALSE}.}
 
-\item{max}{maximum number of simulations post burn-in}
+\item{iter}{integer. The number of iterations.}
 
 \item{variable_names}{character vector of variable names. Must be in the
 same order and the same length as variables enterd into the \code{zoib}
@@ -25,5 +25,30 @@ a ggplot2 plot
 }
 \description{
 Function to plot parameter posteriors from Zero-inflated Beta Regressions
+}
+\examples{
+\dontrun{
+Load packages
+library(zoib)
+library(zibHelpers)
+
+# Run example of clustered zero-inflated beta regression from
+# Liu and Kong (under review, 12-14)
+
+# Load data
+data("AlcoholUse", package = "zoib")
+AlcoholUse$Grade <- as.factor(AlcoholUse$Grade)
+
+nIter = 50 # Number of iterations, including burn-in
+
+# Estimate
+Out <- zoib(Percentage ~ Grade + Days + Gender|1|Grade + Days + Gender|1,
+            data = AlcoholUse, random = 1, EUID = AlcoholUse$County,
+            zero.inflation = TRUE, one.inflation = FALSE, joint = FALSE,
+            n.iter = nIter)
+
+# Plot the posterior summary
+zibPlot(Out, iter = nIter)
+}
 }
 
