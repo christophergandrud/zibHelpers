@@ -68,7 +68,7 @@ You can add custom variable labels with the `xlab` argument.
 ## Install
 
 ```{S}
-devtools::github_install('christophergandrud/zibHelpers')
+devtools::install_github('christophergandrud/zibHelpers')
 ```
 ---
 
